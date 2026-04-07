@@ -3,636 +3,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emil Tours VIP | חטיבת רכבי היוקרה</title>
-<meta name="description" content="אמיל טורס VIP — שירות הסעות יוקרה פרימיום. רכבי VIP מפוארים, נהגים מקצועיים, חוויה שאין כמוה. מאז 1992.">
-<meta property="og:title" content="Emil Tours VIP — חטיבת רכבי היוקרה">
-<meta property="og:description" content="שירות הסעות יוקרה פרימיום. רכבי VIP מפוארים, נהגים מקצועיים.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&q=80">
+<title>Emil Tours VIP | שירות רכבי יוקרה</title>
+<meta name="description" content="אמיל טורס VIP — חטיבת רכבי היוקרה. הסעות פרימיום ברכבי VIP מפוארים עם נהגים מקצועיים. מאז 1992.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Heebo:wght@300;400;500;600;700;800;900&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.21/dist/lenis.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Heebo:wght@300;400;500;600;700;800;900&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════
-   EMIL TOURS VIP — LUXURY REIMAGINED
-   Editorial Layout | GSAP + Parallax | Real Photography
-   ═══════════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0a0c;--bg2:#111114;--bg3:#18181c;--bg4:#1e1e24;
+--cream:#ede9e0;--cream70:rgba(237,233,224,.7);--cream40:rgba(237,233,224,.4);--cream12:rgba(237,233,224,.12);--cream05:rgba(237,233,224,.05);
+--gold:#c9a96e;--gold2:#ddb978;--gold15:rgba(201,169,110,.15);--gold08:rgba(201,169,110,.08);
+--serif:'Cormorant Garamond',Georgia,serif;--heb:'Frank Ruhl Libre','Heebo',serif;--sans:'Heebo',sans-serif;
+--ease:cubic-bezier(.22,1,.36,1);--ease2:cubic-bezier(.16,1,.3,1);
+}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);background:var(--bg);color:var(--cream);overflow-x:hidden;line-height:1.7}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--gold15);border-radius:4px}
+::selection{background:rgba(201,169,110,.2);color:#fff}
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* LOADER */
+.loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px}
+.loader-brand{font-family:var(--serif);font-size:13px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);opacity:0}
+.loader-bar{width:180px;height:1px;background:var(--cream05);overflow:hidden;position:relative}
+.loader-fill{position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:right}
+.loader-pct{font-family:var(--serif);font-size:11px;letter-spacing:.2em;color:var(--cream40);opacity:0}
 
-:root {
-  --bg: #08080A;
-  --bg-warm: #0E0D10;
-  --bg-surface: #141318;
-  --bg-elevated: #1A191F;
-  --cream: #F0EDE6;
-  --cream-muted: rgba(240, 237, 230, 0.5);
-  --cream-subtle: rgba(240, 237, 230, 0.08);
-  --cream-faint: rgba(240, 237, 230, 0.03);
-  --gold: #C4A265;
-  --gold-bright: #D4B87A;
-  --gold-muted: rgba(196, 162, 101, 0.15);
-  --gold-glow: rgba(196, 162, 101, 0.25);
-  --champagne: #E8DCC8;
-  --slate: #8A8690;
-  --charcoal: #2A2930;
-  --ink: #18171C;
+/* GRAIN */
+.grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px}
 
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --hebrew: 'Frank Ruhl Libre', 'Heebo', serif;
-  --sans: 'Heebo', system-ui, sans-serif;
+/* CURSOR */
+.c-dot{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.c-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,169,110,.3);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .3s var(--ease),height .3s var(--ease)}
+.c-ring.hover{width:56px;height:56px;border-color:var(--gold)}
+@media(max-width:900px){.c-dot,.c-ring{display:none}}
 
-  --text-xs: clamp(0.625rem, 0.6rem + 0.15vw, 0.6875rem);
-  --text-sm: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
-  --text-base: clamp(0.875rem, 0.82rem + 0.25vw, 1rem);
-  --text-lg: clamp(1rem, 0.92rem + 0.4vw, 1.2rem);
-  --text-xl: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
-  --text-2xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
-  --text-3xl: clamp(2.2rem, 1.6rem + 2.5vw, 3.5rem);
-  --text-4xl: clamp(2.8rem, 1.8rem + 4vw, 5.5rem);
-  --text-5xl: clamp(3.5rem, 2rem + 6vw, 8rem);
+/* NAV */
+.nav{position:fixed;top:0;right:0;left:0;z-index:1000;padding:1.8rem 0;transition:all .6s var(--ease)}
+.nav.scrolled{background:rgba(10,10,12,.88);backdrop-filter:blur(20px);padding:1rem 0;border-bottom:1px solid var(--cream05)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--serif);font-size:clamp(1rem,1.2vw,1.15rem);font-weight:500;color:var(--gold);letter-spacing:.06em}
+.nav-logo span{color:var(--cream40);font-weight:300}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:13px;color:var(--cream40);letter-spacing:.02em;transition:color .4s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+.nav-links a:hover{color:var(--cream)}.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;padding:.55rem 1.4rem;border:1px solid var(--gold15);transition:all .4s var(--ease)}
+.nav-cta:hover{background:var(--gold);color:var(--bg)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{width:22px;height:1px;background:var(--cream);transition:all .4s var(--ease)}
+.burger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}.burger.active span:nth-child(2){opacity:0}.burger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mob-menu{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .6s var(--ease)}
+.mob-menu.open{opacity:1;visibility:visible}
+.mob-menu ul{list-style:none;text-align:center}.mob-menu li{margin-bottom:1.5rem}
+.mob-menu a{font-family:var(--heb);font-size:clamp(1.5rem,4vw,2.2rem);color:var(--cream);transition:color .3s}.mob-menu a:hover{color:var(--gold)}
+@media(max-width:900px){.nav-links,.nav-cta{display:none}.burger{display:flex}}
 
-  --ease: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+/* HERO */
+.hero{position:relative;height:100vh;min-height:700px;overflow:hidden;display:flex;align-items:flex-end}
+.hero-media{position:absolute;inset:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,12,.2) 0%,rgba(10,10,12,.05) 25%,rgba(10,10,12,.4) 60%,rgba(10,10,12,.95) 100%),linear-gradient(270deg,rgba(10,10,12,.3) 0%,transparent 50%)}
+.hero-content{position:relative;z-index:2;padding-bottom:clamp(4rem,10vh,7rem);width:100%}
+.hero-content .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem);display:flex;flex-direction:column;gap:1.2rem}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:1rem;opacity:0}
+.hero-eyebrow::before{content:'';width:35px;height:1px;background:var(--gold)}
+.hero-title{font-family:var(--heb);font-weight:800;font-size:clamp(2.8rem,6vw,5.5rem);line-height:1.05;color:var(--cream);max-width:700px;opacity:0}
+.hero-title i{font-style:normal;color:var(--gold);font-family:var(--serif);font-weight:400}
+.hero-sub{font-size:clamp(.85rem,.9vw,1rem);color:var(--cream40);max-width:460px;line-height:1.85;opacity:0}
+.hero-cta-row{display:flex;gap:1rem;margin-top:.5rem;flex-wrap:wrap;opacity:0}
+.hero-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:13px;font-weight:500;padding:.85rem 2rem;letter-spacing:.03em;transition:all .4s var(--ease)}
+.hero-btn.primary{background:var(--gold);color:var(--bg)}.hero-btn.primary:hover{background:var(--gold2);transform:translateY(-2px)}
+.hero-btn.ghost{color:var(--cream);border:1px solid var(--cream12)}.hero-btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
 
-  --max-w: 1240px;
-  --gap: clamp(6rem, 12vw, 10rem);
-}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.hero-scroll span{font-size:10px;letter-spacing:.2em;color:var(--cream40);writing-mode:vertical-rl}
+.hero-scroll-line{width:1px;height:50px;background:var(--cream05);position:relative;overflow:hidden}
+.hero-scroll-line::after{content:'';position:absolute;top:-100%;width:100%;height:50%;background:var(--gold);animation:sline 2s var(--ease) infinite}
+@keyframes sline{0%{top:-50%}100%{top:150%}}
 
-html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* MARQUEE */
+.marquee{padding:1.8rem 0;border-top:1px solid var(--cream05);border-bottom:1px solid var(--cream05);overflow:hidden}
+.marquee-track{display:flex;gap:2.5rem;white-space:nowrap;animation:mq 35s linear infinite}
+.marquee-item{font-family:var(--serif);font-size:clamp(1rem,1.3vw,1.3rem);color:var(--cream40);letter-spacing:.06em;display:flex;align-items:center;gap:2.5rem;flex-shrink:0}
+.marquee-item .d{width:4px;height:4px;background:var(--gold);border-radius:50%}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-body {
-  font-family: var(--sans); background: var(--bg); color: var(--cream);
-  overflow-x: hidden; line-height: 1.7; font-weight: 400;
-}
+/* SECTION UTILS */
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,4vw,3rem)}
+.sec-label{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500;display:flex;align-items:center;gap:.7rem}
+.sec-label::before{content:'';width:28px;height:1px;background:var(--gold)}
+.sec-title{font-family:var(--heb);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;line-height:1.15;color:var(--cream)}
+.sec-title i{font-style:normal;color:var(--gold);font-family:var(--serif);font-weight:400}
 
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(196,162,101,0.3); border-radius: 2px; }
-::selection { background: rgba(196,162,101,0.25); color: #fff; }
+/* ABOUT */
+.about{padding:clamp(5rem,12vw,9rem) 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,5rem);align-items:center}
+.about-visual{position:relative}
+.about-img{position:relative;overflow:hidden;aspect-ratio:3/4}
+.about-img img{transition:transform 6s var(--ease)}
+.about-img:hover img{transform:scale(1.04)}
+.about-badge{position:absolute;bottom:0;right:0;background:var(--bg);padding:1.2rem 1.8rem;border-top:1px solid var(--gold08);border-right:1px solid var(--gold08)}
+.about-badge-num{font-family:var(--serif);font-size:clamp(2rem,3vw,2.8rem);color:var(--gold);line-height:1}
+.about-badge-txt{font-size:11px;color:var(--cream40);letter-spacing:.08em;margin-top:.2rem}
+.about-text{display:flex;flex-direction:column;gap:1.2rem}
+.about-desc{font-size:clamp(.85rem,.9vw,.95rem);color:var(--cream40);line-height:1.9}
+.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.3rem}
+.about-feat{display:flex;align-items:center;gap:.5rem;font-size:13px;color:var(--cream40)}
+.about-feat svg{width:14px;height:14px;color:var(--gold);flex-shrink:0}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr}.about-visual{order:-1}}
 
-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* PARALLAX IMAGE DIVIDER */
+.par-divider{position:relative;height:60vh;min-height:400px;overflow:hidden}
+.par-divider img{position:absolute;inset:-20% 0;width:100%;height:140%;object-fit:cover}
+.par-divider .overlay{position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(10,10,12,.3) 20%,rgba(10,10,12,.3) 80%,var(--bg) 100%)}
+.par-divider .par-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2}
+.par-divider .par-text h2{font-family:var(--serif);font-size:clamp(2rem,5vw,4.5rem);color:var(--cream);font-weight:300;letter-spacing:.04em;text-align:center;max-width:800px;padding:0 2rem;opacity:.9}
+.par-divider .par-text h2 em{font-style:italic;color:var(--gold)}
 
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+/* SERVICES HORIZONTAL SCROLL */
+.services{padding:clamp(5rem,12vw,9rem) 0}
+.services-header{margin-bottom:3rem}
+.services-header .sec-label{justify-content:center}.services-header .sec-label::before{display:none}
+.services-header .sec-title{text-align:center;max-width:550px;margin:.8rem auto 0}
+.srv-scroll-wrap{overflow:hidden}
+.srv-track{display:flex;gap:1.5rem;padding:0 clamp(1.5rem,4vw,3rem)}
+.srv-card{flex-shrink:0;width:clamp(300px,32vw,380px);position:relative;overflow:hidden;background:var(--bg2);border:1px solid var(--cream05);transition:border-color .5s var(--ease)}
+.srv-card:hover{border-color:var(--gold15)}
+.srv-card-img{position:relative;overflow:hidden;aspect-ratio:4/3}
+.srv-card-img img{transition:transform 5s var(--ease)}
+.srv-card:hover .srv-card-img img{transform:scale(1.06)}
+.srv-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg2),transparent 50%)}
+.srv-card-body{padding:1.5rem 1.8rem 1.8rem}
+.srv-card-num{font-family:var(--serif);font-size:11px;color:var(--gold);letter-spacing:.12em;margin-bottom:.6rem}
+.srv-card-title{font-family:var(--heb);font-size:clamp(1.1rem,1.3vw,1.3rem);font-weight:600;margin-bottom:.6rem;color:var(--cream)}
+.srv-card-desc{font-size:13px;color:var(--cream40);line-height:1.8}
 
-/* ══════════════════ CURSOR ══════════════════ */
-.cursor-dot {
-  position: fixed; width: 5px; height: 5px; background: var(--gold);
-  border-radius: 50%; pointer-events: none; z-index: 99999;
-  transform: translate(-50%, -50%); mix-blend-mode: difference;
-}
-.cursor-ring {
-  position: fixed; width: 36px; height: 36px;
-  border: 1px solid rgba(196,162,101,0.35); border-radius: 50%;
-  pointer-events: none; z-index: 99998;
-  transform: translate(-50%, -50%); mix-blend-mode: difference;
-  transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s;
-}
-.cursor-ring.hover { width: 56px; height: 56px; border-color: var(--gold); }
-@media (max-width: 900px) { .cursor-dot, .cursor-ring { display: none; } }
+/* FLEET */
+.fleet{padding:clamp(5rem,12vw,9rem) 0;position:relative}
+.fleet-bg{position:absolute;top:50%;right:50%;transform:translate(50%,-50%);font-family:var(--serif);font-size:clamp(7rem,18vw,16rem);color:var(--cream);opacity:.015;white-space:nowrap;pointer-events:none;font-weight:300}
+.fleet-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:1.2rem;align-items:stretch}
+.fleet-main{position:relative;overflow:hidden;aspect-ratio:16/10}
+.fleet-main img{transition:transform 6s var(--ease)}.fleet-main:hover img{transform:scale(1.03)}
+.fleet-main-info{position:absolute;bottom:0;right:0;left:0;z-index:2;padding:2rem 2.5rem;background:linear-gradient(to top,rgba(10,10,12,.85),transparent)}
+.fleet-main-info h3{font-family:var(--heb);font-size:clamp(1.3rem,2vw,1.8rem);font-weight:600}
+.fleet-main-info p{font-size:13px;color:var(--cream40);margin-top:.3rem}
+.fleet-side{display:flex;flex-direction:column;gap:1.2rem}
+.fleet-side-item{flex:1;position:relative;overflow:hidden}
+.fleet-side-item img{transition:transform 5s var(--ease)}.fleet-side-item:hover img{transform:scale(1.05)}
+.fleet-side-label{position:absolute;bottom:1rem;right:1.3rem;z-index:2;font-family:var(--heb);font-size:14px;font-weight:500;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+@media(max-width:900px){.fleet-grid{grid-template-columns:1fr}}
 
-/* ══════════════════ GRAIN ══════════════════ */
-.grain {
-  position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  background-size: 128px 128px;
-}
+/* STATS */
+.stats{padding:3.5rem 0;border-top:1px solid var(--cream05);border-bottom:1px solid var(--cream05)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-num{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);color:var(--gold);line-height:1;margin-bottom:.4rem}
+.stat-txt{font-size:13px;color:var(--cream40)}
+@media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr}}
 
-/* ══════════════════ LOADER ══════════════════ */
-.loader {
-  position: fixed; inset: 0; z-index: 10000; background: var(--bg);
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 24px;
-}
-.loader-text {
-  font-family: var(--serif); font-size: var(--text-sm); letter-spacing: 0.35em;
-  text-transform: uppercase; color: var(--gold); opacity: 0;
-}
-.loader-line {
-  width: 160px; height: 1px; background: var(--charcoal); position: relative; overflow: hidden;
-}
-.loader-fill {
-  position: absolute; inset: 0; background: var(--gold); transform-origin: right; transform: scaleX(0);
-}
-.loader-counter {
-  font-family: var(--serif); font-size: var(--text-xs); letter-spacing: 0.2em;
-  color: var(--cream-muted); opacity: 0;
-}
+/* EXPERIENCE */
+.experience{padding:clamp(5rem,12vw,9rem) 0}
+.exp-grid{display:grid;grid-template-columns:.5fr 1fr;gap:clamp(3rem,6vw,5rem)}
+.exp-sticky{position:sticky;top:8rem;align-self:start}
+.exp-items{display:flex;flex-direction:column;gap:3.5rem}
+.exp-item{display:grid;grid-template-columns:70px 1fr;gap:1.3rem;padding-bottom:3.5rem;border-bottom:1px solid var(--cream05)}
+.exp-item:last-child{border-bottom:none}
+.exp-num{font-family:var(--serif);font-size:clamp(1.8rem,2.5vw,2.5rem);color:var(--gold15);line-height:1}
+.exp-title{font-family:var(--heb);font-size:clamp(1.1rem,1.3vw,1.3rem);font-weight:600;margin-bottom:.4rem}
+.exp-desc{font-size:13px;color:var(--cream40);line-height:1.9}
+@media(max-width:900px){.exp-grid{grid-template-columns:1fr}.exp-sticky{position:relative;top:0}}
 
-/* ══════════════════ NAV ══════════════════ */
-.nav {
-  position: fixed; top: 0; right: 0; left: 0; z-index: 1000;
-  padding: 1.5rem 0; transition: all 0.6s var(--ease);
-}
-.nav.scrolled {
-  background: rgba(8,8,10,0.85); backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--cream-subtle); padding: 1rem 0;
-}
-.nav-inner {
-  max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo {
-  font-family: var(--serif); font-size: var(--text-lg); font-weight: 500;
-  color: var(--gold); text-decoration: none; letter-spacing: 0.05em;
-}
-.nav-logo span { color: var(--cream-muted); font-weight: 300; }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  font-size: var(--text-sm); color: var(--cream-muted); text-decoration: none;
-  letter-spacing: 0.03em; transition: color 0.4s;
-  position: relative;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; right: 0; width: 0; height: 1px;
-  background: var(--gold); transition: width 0.4s var(--ease);
-}
-.nav-links a:hover { color: var(--cream); }
-.nav-links a:hover::after { width: 100%; }
-.nav-cta {
-  font-size: var(--text-xs); color: var(--gold); text-decoration: none;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  padding: 0.6rem 1.5rem; border: 1px solid var(--gold-muted);
-  transition: all 0.4s var(--ease);
-}
-.nav-cta:hover { background: var(--gold); color: var(--bg); }
+/* TESTIMONIALS */
+.reviews{padding:clamp(5rem,12vw,9rem) 0;position:relative;overflow:hidden}
+.reviews-bg{position:absolute;top:50%;right:50%;transform:translate(50%,-50%);font-family:var(--serif);font-size:clamp(9rem,22vw,20rem);color:var(--cream);opacity:.015;pointer-events:none;line-height:1;font-style:italic}
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.rev-card{background:var(--bg2);border:1px solid var(--cream05);padding:clamp(1.8rem,3.5vw,2.5rem);transition:border-color .5s var(--ease)}
+.rev-card:hover{border-color:var(--gold08)}
+.rev-mark{font-family:var(--serif);font-size:clamp(1.8rem,2.5vw,2.5rem);color:var(--gold);line-height:1;margin-bottom:.8rem}
+.rev-text{font-size:14px;color:var(--cream70);line-height:1.8;font-style:italic;margin-bottom:1.2rem}
+.rev-author{display:flex;align-items:center;gap:.8rem}
+.rev-avatar{width:36px;height:36px;border-radius:50%;overflow:hidden;border:1px solid var(--gold08)}
+.rev-name{font-size:13px;font-weight:500;color:var(--cream)}.rev-role{font-size:11px;color:var(--cream40)}
+@media(max-width:700px){.reviews-grid{grid-template-columns:1fr}}
 
-.burger {
-  display: none; flex-direction: column; gap: 5px; background: none;
-  border: none; cursor: pointer; padding: 8px;
-}
-.burger span {
-  width: 22px; height: 1px; background: var(--cream);
-  transition: all 0.4s var(--ease);
-}
-.burger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-.burger.active span:nth-child(2) { opacity: 0; }
-.burger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+/* CTA */
+.cta-section{position:relative;padding:clamp(5rem,12vw,8rem) 0;overflow:hidden}
+.cta-bg{position:absolute;inset:0}
+.cta-bg img{width:100%;height:100%;object-fit:cover;opacity:.2}
+.cta-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--bg),rgba(10,10,12,.6),var(--bg))}
+.cta-content{position:relative;z-index:2;text-align:center;max-width:650px;margin:0 auto}
+.cta-content .sec-label{justify-content:center}.cta-content .sec-label::before{display:none}
+.cta-content .sec-title{margin:.8rem 0 1rem}
+.cta-desc{font-size:14px;color:var(--cream40);line-height:1.8;margin-bottom:1.5rem}
+.cta-btn{display:inline-flex;align-items:center;gap:.6rem;font-size:14px;font-weight:600;padding:1rem 2.5rem;background:var(--gold);color:var(--bg);border:none;cursor:pointer;letter-spacing:.03em;transition:all .4s var(--ease)}
+.cta-btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.cta-phone{display:block;margin-top:1rem;font-family:var(--serif);font-size:clamp(1.3rem,2vw,1.6rem);color:var(--gold);letter-spacing:.05em;direction:ltr}
 
-.mobile-menu {
-  position: fixed; inset: 0; z-index: 999; background: var(--bg);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; visibility: hidden; transition: all 0.6s var(--ease);
-}
-.mobile-menu.open { opacity: 1; visibility: visible; }
-.mobile-menu-links { list-style: none; text-align: center; }
-.mobile-menu-links li { margin-bottom: 1.5rem; }
-.mobile-menu-links a {
-  font-family: var(--hebrew); font-size: var(--text-2xl); color: var(--cream);
-  text-decoration: none; transition: color 0.3s;
-}
-.mobile-menu-links a:hover { color: var(--gold); }
-
-@media (max-width: 900px) {
-  .nav-links, .nav-cta { display: none; }
-  .burger { display: flex; }
-}
-
-/* ══════════════════ HERO ══════════════════ */
-.hero {
-  position: relative; height: 100vh; min-height: 700px; overflow: hidden;
-  display: flex; align-items: flex-end;
-}
-.hero-media {
-  position: absolute; inset: 0; z-index: 0;
-}
-.hero-media img {
-  width: 100%; height: 100%; object-fit: cover;
-  transform: scale(1.15);
-}
-.hero-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(8,8,10,0.3) 0%, rgba(8,8,10,0.1) 30%, rgba(8,8,10,0.6) 70%, rgba(8,8,10,0.95) 100%),
-    linear-gradient(270deg, rgba(8,8,10,0.4) 0%, transparent 50%);
-}
-.hero-content {
-  position: relative; z-index: 2; padding-bottom: clamp(4rem, 10vh, 8rem);
-  width: 100%;
-}
-.hero-content .container { display: flex; flex-direction: column; gap: 1.5rem; }
-
-.hero-eyebrow {
-  font-family: var(--sans); font-size: var(--text-xs); font-weight: 500;
-  letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
-  display: flex; align-items: center; gap: 1rem;
-}
-.hero-eyebrow::before {
-  content: ''; width: 40px; height: 1px; background: var(--gold);
-}
-.hero-title {
-  font-family: var(--hebrew); font-weight: 700;
-  font-size: var(--text-5xl); line-height: 1.05;
-  color: var(--cream); max-width: 700px;
-}
-.hero-title em {
-  font-style: normal; color: var(--gold);
-  font-family: var(--serif); font-weight: 400;
-}
-.hero-sub {
-  font-size: var(--text-base); color: var(--cream-muted);
-  max-width: 480px; line-height: 1.8;
-}
-.hero-cta-row { display: flex; gap: 1.2rem; margin-top: 0.5rem; flex-wrap: wrap; }
-.hero-btn {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-size: var(--text-sm); font-weight: 500; text-decoration: none;
-  padding: 0.9rem 2rem; letter-spacing: 0.04em; transition: all 0.4s var(--ease);
-}
-.hero-btn.primary {
-  background: var(--gold); color: var(--bg); border: none;
-}
-.hero-btn.primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
-.hero-btn.secondary {
-  background: transparent; color: var(--cream); border: 1px solid var(--cream-subtle);
-}
-.hero-btn.secondary:hover { border-color: var(--gold); color: var(--gold); }
-
-.hero-scroll {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
-}
-.hero-scroll-text {
-  font-size: var(--text-xs); letter-spacing: 0.2em; color: var(--cream-muted);
-  writing-mode: vertical-rl; text-orientation: mixed;
-}
-.hero-scroll-line {
-  width: 1px; height: 50px; background: var(--cream-subtle); position: relative; overflow: hidden;
-}
-.hero-scroll-line::after {
-  content: ''; position: absolute; top: -100%; width: 100%; height: 50%;
-  background: var(--gold); animation: scroll-line 2s var(--ease) infinite;
-}
-@keyframes scroll-line { 0% { top: -50%; } 100% { top: 150%; } }
-
-/* ══════════════════ MARQUEE ══════════════════ */
-.marquee-section {
-  padding: 2rem 0; border-top: 1px solid var(--cream-subtle);
-  border-bottom: 1px solid var(--cream-subtle); overflow: hidden;
-}
-.marquee-track {
-  display: flex; gap: 3rem; white-space: nowrap;
-  animation: marquee 30s linear infinite;
-}
-.marquee-item {
-  font-family: var(--serif); font-size: var(--text-xl); color: var(--cream-muted);
-  letter-spacing: 0.08em; display: flex; align-items: center; gap: 3rem;
-  flex-shrink: 0;
-}
-.marquee-item .dot {
-  width: 4px; height: 4px; background: var(--gold); border-radius: 50%;
-}
-@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-/* ══════════════════ ABOUT ══════════════════ */
-.about { padding: var(--gap) 0; }
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem);
-  align-items: center;
-}
-.about-visual { position: relative; }
-.about-img-wrap {
-  position: relative; overflow: hidden; aspect-ratio: 3/4;
-}
-.about-img-wrap img { transition: transform 8s var(--ease); }
-.about-img-wrap:hover img { transform: scale(1.05); }
-.about-img-overlay {
-  position: absolute; bottom: 0; right: 0;
-  background: var(--bg); padding: 1.5rem 2rem;
-  border-top: 1px solid var(--gold-muted);
-  border-right: 1px solid var(--gold-muted);
-}
-.about-stat-number {
-  font-family: var(--serif); font-size: var(--text-3xl); color: var(--gold);
-  line-height: 1;
-}
-.about-stat-label {
-  font-size: var(--text-xs); color: var(--cream-muted);
-  letter-spacing: 0.1em; margin-top: 0.3rem;
-}
-
-.about-text { display: flex; flex-direction: column; gap: 1.5rem; }
-.section-label {
-  font-size: var(--text-xs); letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--gold); font-weight: 500;
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
-.section-title {
-  font-family: var(--hebrew); font-size: var(--text-3xl); font-weight: 700;
-  line-height: 1.15; color: var(--cream);
-}
-.section-title em {
-  font-style: normal; color: var(--gold); font-family: var(--serif); font-weight: 400;
-}
-.about-description {
-  font-size: var(--text-base); color: var(--cream-muted); line-height: 1.9;
-}
-.about-features {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;
-}
-.about-feature {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-size: var(--text-sm); color: var(--cream-muted);
-}
-.about-feature svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
-
-@media (max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-visual { order: -1; }
-}
-
-/* ══════════════════ SERVICES (HORIZONTAL SCROLL) ══════════════════ */
-.services { padding: var(--gap) 0; }
-.services-header { text-align: center; margin-bottom: 4rem; }
-.services-header .section-label { justify-content: center; }
-.services-header .section-label::before { display: none; }
-.services-header .section-title { max-width: 600px; margin: 0 auto; }
-
-.services-track-wrap { overflow: hidden; }
-.services-track {
-  display: flex; gap: 2rem; padding: 0 clamp(1.5rem, 4vw, 3rem);
-}
-.service-card {
-  flex-shrink: 0; width: clamp(320px, 35vw, 420px);
-  position: relative; overflow: hidden; background: var(--bg-surface);
-  border: 1px solid var(--cream-subtle);
-  transition: border-color 0.5s var(--ease);
-}
-.service-card:hover { border-color: var(--gold-muted); }
-.service-card-img {
-  position: relative; overflow: hidden; aspect-ratio: 4/3;
-}
-.service-card-img img { transition: transform 6s var(--ease); }
-.service-card:hover .service-card-img img { transform: scale(1.08); }
-.service-card-img::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to top, var(--bg-surface), transparent 50%);
-}
-.service-card-body { padding: 1.8rem 2rem 2rem; }
-.service-card-num {
-  font-family: var(--serif); font-size: var(--text-xs); color: var(--gold);
-  letter-spacing: 0.15em; margin-bottom: 0.8rem;
-}
-.service-card-title {
-  font-family: var(--hebrew); font-size: var(--text-xl); font-weight: 600;
-  margin-bottom: 0.8rem; color: var(--cream);
-}
-.service-card-desc {
-  font-size: var(--text-sm); color: var(--cream-muted); line-height: 1.8;
-}
-
-/* ══════════════════ FLEET SHOWCASE ══════════════════ */
-.fleet { padding: var(--gap) 0; position: relative; }
-.fleet-bg-text {
-  position: absolute; top: 50%; right: 50%; transform: translate(50%, -50%);
-  font-family: var(--serif); font-size: clamp(8rem, 20vw, 18rem);
-  color: var(--cream-faint); white-space: nowrap; pointer-events: none;
-  letter-spacing: -0.02em; font-weight: 300;
-}
-.fleet-grid {
-  display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem;
-  align-items: stretch;
-}
-.fleet-main {
-  position: relative; overflow: hidden; aspect-ratio: 16/10;
-}
-.fleet-main img { transition: transform 8s var(--ease); }
-.fleet-main:hover img { transform: scale(1.04); }
-.fleet-main-info {
-  position: absolute; bottom: 0; right: 0; left: 0; z-index: 2;
-  padding: 2.5rem; background: linear-gradient(to top, rgba(8,8,10,0.9), transparent);
-}
-.fleet-main-info h3 {
-  font-family: var(--hebrew); font-size: var(--text-2xl); font-weight: 600;
-}
-.fleet-main-info p {
-  font-size: var(--text-sm); color: var(--cream-muted); margin-top: 0.4rem;
-}
-
-.fleet-side { display: flex; flex-direction: column; gap: 1.5rem; }
-.fleet-side-item {
-  flex: 1; position: relative; overflow: hidden;
-}
-.fleet-side-item img { transition: transform 6s var(--ease); }
-.fleet-side-item:hover img { transform: scale(1.06); }
-.fleet-side-label {
-  position: absolute; bottom: 1.2rem; right: 1.5rem; z-index: 2;
-  font-family: var(--hebrew); font-size: var(--text-base); font-weight: 500;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-}
-
-@media (max-width: 900px) {
-  .fleet-grid { grid-template-columns: 1fr; }
-}
-
-/* ══════════════════ STATS ══════════════════ */
-.stats {
-  padding: 4rem 0; border-top: 1px solid var(--cream-subtle);
-  border-bottom: 1px solid var(--cream-subtle);
-}
-.stats-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
-  text-align: center;
-}
-.stat-item { padding: 1rem 0; }
-.stat-number {
-  font-family: var(--serif); font-size: var(--text-3xl); color: var(--gold);
-  line-height: 1; margin-bottom: 0.5rem;
-}
-.stat-label {
-  font-size: var(--text-sm); color: var(--cream-muted);
-}
-@media (max-width: 600px) {
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-}
-
-/* ══════════════════ EXPERIENCE ══════════════════ */
-.experience { padding: var(--gap) 0; }
-.exp-grid {
-  display: grid; grid-template-columns: 0.5fr 1fr; gap: clamp(3rem, 6vw, 6rem);
-}
-.exp-sticky {
-  position: sticky; top: 8rem; align-self: start;
-}
-.exp-items { display: flex; flex-direction: column; gap: 4rem; }
-.exp-item {
-  display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem;
-  padding-bottom: 4rem; border-bottom: 1px solid var(--cream-subtle);
-}
-.exp-item:last-child { border-bottom: none; }
-.exp-num {
-  font-family: var(--serif); font-size: var(--text-3xl); color: var(--gold-muted);
-  line-height: 1;
-}
-.exp-title {
-  font-family: var(--hebrew); font-size: var(--text-xl); font-weight: 600;
-  margin-bottom: 0.6rem; color: var(--cream);
-}
-.exp-desc {
-  font-size: var(--text-sm); color: var(--cream-muted); line-height: 1.9;
-}
-
-@media (max-width: 900px) {
-  .exp-grid { grid-template-columns: 1fr; }
-  .exp-sticky { position: relative; top: 0; }
-}
-
-/* ══════════════════ TESTIMONIALS ══════════════════ */
-.testimonials { padding: var(--gap) 0; position: relative; overflow: hidden; }
-.test-bg {
-  position: absolute; top: 50%; right: 50%; transform: translate(50%, -50%);
-  font-family: var(--serif); font-size: clamp(10rem, 25vw, 22rem);
-  color: var(--cream-faint); pointer-events: none; line-height: 1;
-  font-style: italic; opacity: 0.5;
-}
-.test-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.test-card {
-  background: var(--bg-surface); border: 1px solid var(--cream-subtle);
-  padding: clamp(2rem, 4vw, 3rem); position: relative;
-  transition: border-color 0.5s var(--ease);
-}
-.test-card:hover { border-color: var(--gold-muted); }
-.test-quote-mark {
-  font-family: var(--serif); font-size: var(--text-3xl); color: var(--gold);
-  line-height: 1; margin-bottom: 1rem;
-}
-.test-text {
-  font-size: var(--text-base); color: var(--cream-muted); line-height: 1.9;
-  margin-bottom: 1.5rem; font-style: italic;
-}
-.test-author { font-size: var(--text-sm); color: var(--cream); font-weight: 500; }
-.test-role { font-size: var(--text-xs); color: var(--slate); margin-top: 0.2rem; }
-
-@media (max-width: 600px) {
-  .test-grid { grid-template-columns: 1fr; }
-}
-
-/* ══════════════════ PARALLAX IMAGE BREAK ══════════════════ */
-.parallax-break {
-  position: relative; height: 60vh; min-height: 400px; overflow: hidden;
-}
-.parallax-break img {
-  position: absolute; top: -20%; right: 0; width: 100%; height: 140%;
-  object-fit: cover;
-}
-.parallax-break-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%);
-}
-.parallax-break-text {
-  position: absolute; top: 50%; right: 50%; transform: translate(50%, -50%);
-  z-index: 2; text-align: center;
-}
-.parallax-break-text h3 {
-  font-family: var(--hebrew); font-size: var(--text-3xl); font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-.parallax-break-text p {
-  font-size: var(--text-base); color: var(--champagne);
-}
-
-/* ══════════════════ CTA ══════════════════ */
-.cta { padding: var(--gap) 0; text-align: center; }
-.cta-inner {
-  max-width: 650px; margin: 0 auto;
-  display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
-}
-.cta-title {
-  font-family: var(--hebrew); font-size: var(--text-3xl); font-weight: 700;
-  line-height: 1.2;
-}
-.cta-title em {
-  font-style: normal; color: var(--gold); font-family: var(--serif); font-weight: 400;
-}
-.cta-desc {
-  font-size: var(--text-base); color: var(--cream-muted); max-width: 450px; line-height: 1.8;
-}
-.cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
-.cta-btn {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 1rem 2.5rem; font-size: var(--text-sm); font-weight: 500;
-  text-decoration: none; letter-spacing: 0.04em; transition: all 0.4s var(--ease);
-}
-.cta-btn.gold { background: var(--gold); color: var(--bg); border: none; }
-.cta-btn.gold:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 8px 30px var(--gold-glow); }
-.cta-btn.outline { background: transparent; color: var(--cream); border: 1px solid var(--cream-subtle); }
-.cta-btn.outline:hover { border-color: var(--gold); color: var(--gold); }
-
-.cta-phone {
-  font-family: var(--serif); font-size: var(--text-2xl); color: var(--gold);
-  text-decoration: none; direction: ltr; margin-top: 0.5rem;
-  transition: color 0.3s;
-}
-.cta-phone:hover { color: var(--gold-bright); }
-
-/* ══════════════════ FOOTER ══════════════════ */
-.footer {
-  padding: 4rem 0 2rem; border-top: 1px solid var(--cream-subtle);
-}
-.footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
-  padding-bottom: 3rem; border-bottom: 1px solid var(--cream-subtle);
-}
-.footer-brand-name {
-  font-family: var(--serif); font-size: var(--text-xl); color: var(--gold);
-  margin-bottom: 0.8rem;
-}
-.footer-brand-desc {
-  font-size: var(--text-sm); color: var(--cream-muted); line-height: 1.8;
-  max-width: 300px;
-}
-.footer-col-title {
-  font-size: var(--text-xs); letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--cream); margin-bottom: 1.2rem; font-weight: 600;
-}
-.footer-col a {
-  display: block; font-size: var(--text-sm); color: var(--cream-muted);
-  text-decoration: none; padding: 0.3rem 0; transition: color 0.3s;
-}
-.footer-col a:hover { color: var(--gold); }
-.footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 2rem;
-}
-.footer-copy { font-size: var(--text-xs); color: var(--slate); }
-.footer-bottom-links { display: flex; gap: 1.5rem; }
-.footer-bottom-links a {
-  font-size: var(--text-xs); color: var(--slate); text-decoration: none;
-  transition: color 0.3s;
-}
-.footer-bottom-links a:hover { color: var(--cream); }
-
-@media (max-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-}
-
-/* ══════════════════ REVEAL ANIMATIONS ══════════════════ */
-.rv { opacity: 0; transform: translateY(40px); }
-.rv-right { opacity: 0; transform: translateX(-40px); }
-.rv-left { opacity: 0; transform: translateX(40px); }
-.rv-scale { opacity: 0; transform: scale(0.95); }
-
+/* FOOTER */
+footer{padding:3rem 0 1.5rem;border-top:1px solid var(--cream05)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.foot-brand{font-family:var(--serif);font-size:1.1rem;color:var(--gold);margin-bottom:.6rem;letter-spacing:.04em}
+.foot-brand span{color:var(--cream40);font-weight:300}
+.foot-desc{font-size:13px;color:var(--cream40);line-height:1.7;max-width:300px}
+.foot-title{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:500}
+.foot-links{list-style:none}.foot-links li{margin-bottom:.5rem}.foot-links a{font-size:13px;color:var(--cream40);transition:color .3s}.foot-links a:hover{color:var(--cream)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;border-top:1px solid var(--cream05);font-size:11px;color:var(--cream40);letter-spacing:.03em}
+@media(max-width:700px){.foot-grid{grid-template-columns:1fr}.foot-bottom{flex-direction:column;gap:.5rem;text-align:center}}
 </style>
 </head>
 <body>
 
-<!-- Grain -->
 <div class="grain"></div>
+<div class="c-dot"></div>
+<div class="c-ring"></div>
 
-<!-- Cursor -->
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
-
-<!-- Loader -->
+<!-- LOADER -->
 <div class="loader">
-  <div class="loader-text">EMIL TOURS VIP</div>
-  <div class="loader-line"><div class="loader-fill"></div></div>
-  <div class="loader-counter">0%</div>
+  <div class="loader-brand">Emil Tours VIP</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+  <div class="loader-pct">0%</div>
 </div>
 
-<!-- Nav -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">Emil Tours <span>VIP</span></a>
@@ -641,277 +235,240 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
       <li><a href="#services">שירותים</a></li>
       <li><a href="#fleet">הצי שלנו</a></li>
       <li><a href="#experience">החוויה</a></li>
-      <li><a href="#testimonials">לקוחות</a></li>
+      <li><a href="#reviews">לקוחות</a></li>
     </ul>
-    <a href="tel:+97239543954" class="nav-cta magnetic">03-954-3954</a>
-    <button class="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="tel:086813222" class="nav-cta">צור קשר</a>
+    <button class="burger" aria-label="תפריט"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu">
-  <ul class="mobile-menu-links">
+<!-- MOBILE MENU -->
+<div class="mob-menu">
+  <ul>
     <li><a href="#about">אודות</a></li>
     <li><a href="#services">שירותים</a></li>
     <li><a href="#fleet">הצי שלנו</a></li>
     <li><a href="#experience">החוויה</a></li>
-    <li><a href="#testimonials">לקוחות</a></li>
-    <li><a href="tel:+97239543954" style="color:var(--gold)">03-954-3954</a></li>
+    <li><a href="#reviews">לקוחות</a></li>
+    <li><a href="tel:086813222">08-6813222</a></li>
   </ul>
 </div>
 
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-media">
-    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=1920&q=85" alt="Luxury Mercedes S-Class">
+    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=1920&q=85" alt="רכב יוקרה">
+    <div class="hero-overlay"></div>
   </div>
-  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="container">
-      <div class="hero-eyebrow rv">מאז 1992 | חטיבת רכבי היוקרה</div>
-      <h1 class="hero-title rv">לא רק <em>נסיעה.</em><br>חוויה שלמה.</h1>
-      <p class="hero-sub rv">שירות הסעות יוקרה פרימיום עם הרכבים היוקרתיים בישראל. כל נסיעה מותאמת אישית. כל פרט מושלם.</p>
-      <div class="hero-cta-row rv">
-        <a href="tel:+97239543954" class="hero-btn primary magnetic">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          הזמינו עכשיו
+    <div class="wrap">
+      <div class="hero-eyebrow">חטיבת רכבי היוקרה</div>
+      <h1 class="hero-title">נסיעה שמרגישה<br>כמו <i>חוויה</i></h1>
+      <p class="hero-sub">מאז 1992, אמיל טורס מספקים שירות הסעות פרימיום ברכבי יוקרה מפוארים. נהגים מקצועיים, פרטיות מוחלטת, תשומת לב לכל פרט.</p>
+      <div class="hero-cta-row">
+        <a href="tel:086813222" class="hero-btn primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          הזמן נסיעה
         </a>
-        <a href="https://wa.me/97239543954" class="hero-btn secondary magnetic">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.67-1.227A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.7-6.412-1.9l-.45-.29-2.8.736.75-2.738-.318-.502A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          WhatsApp
-        </a>
+        <a href="#fleet" class="hero-btn ghost">גלה את הצי שלנו</a>
       </div>
     </div>
   </div>
   <div class="hero-scroll">
-    <span class="hero-scroll-text">SCROLL</span>
+    <span>SCROLL</span>
     <div class="hero-scroll-line"></div>
   </div>
 </section>
 
-<!-- Marquee -->
-<section class="marquee-section">
+<!-- MARQUEE -->
+<div class="marquee">
   <div class="marquee-track">
-    <span class="marquee-item">LUXURY <span class="dot"></span></span>
-    <span class="marquee-item">PREMIUM <span class="dot"></span></span>
-    <span class="marquee-item">VIP SERVICE <span class="dot"></span></span>
-    <span class="marquee-item">SINCE 1992 <span class="dot"></span></span>
-    <span class="marquee-item">FIRST CLASS <span class="dot"></span></span>
-    <span class="marquee-item">EXECUTIVE <span class="dot"></span></span>
-    <span class="marquee-item">CHAUFFEUR <span class="dot"></span></span>
-    <span class="marquee-item">LUXURY <span class="dot"></span></span>
-    <span class="marquee-item">PREMIUM <span class="dot"></span></span>
-    <span class="marquee-item">VIP SERVICE <span class="dot"></span></span>
-    <span class="marquee-item">SINCE 1992 <span class="dot"></span></span>
-    <span class="marquee-item">FIRST CLASS <span class="dot"></span></span>
-    <span class="marquee-item">EXECUTIVE <span class="dot"></span></span>
-    <span class="marquee-item">CHAUFFEUR <span class="dot"></span></span>
+    <span class="marquee-item">הסעות יוקרה<span class="d"></span></span>
+    <span class="marquee-item">נהגים מקצועיים<span class="d"></span></span>
+    <span class="marquee-item">צי רכבים מפואר<span class="d"></span></span>
+    <span class="marquee-item">שירות 24/7<span class="d"></span></span>
+    <span class="marquee-item">פרטיות מוחלטת<span class="d"></span></span>
+    <span class="marquee-item">מאז 1992<span class="d"></span></span>
+    <span class="marquee-item">רכבי VIP<span class="d"></span></span>
+    <span class="marquee-item">חוויית נסיעה פרימיום<span class="d"></span></span>
+    <span class="marquee-item">הסעות יוקרה<span class="d"></span></span>
+    <span class="marquee-item">נהגים מקצועיים<span class="d"></span></span>
+    <span class="marquee-item">צי רכבים מפואר<span class="d"></span></span>
+    <span class="marquee-item">שירות 24/7<span class="d"></span></span>
+    <span class="marquee-item">פרטיות מוחלטת<span class="d"></span></span>
+    <span class="marquee-item">מאז 1992<span class="d"></span></span>
+    <span class="marquee-item">רכבי VIP<span class="d"></span></span>
+    <span class="marquee-item">חוויית נסיעה פרימיום<span class="d"></span></span>
   </div>
-</section>
+</div>
 
-<!-- About -->
+<!-- ABOUT -->
 <section class="about" id="about">
-  <div class="container">
+  <div class="wrap">
     <div class="about-grid">
-      <div class="about-visual rv-right">
-        <div class="about-img-wrap parallax-img">
-          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80" alt="Luxury chauffeur service">
-          <div class="about-img-overlay">
-            <div class="about-stat-number counter" data-target="32">0</div>
-            <div class="about-stat-label">שנות ניסיון</div>
+      <div class="about-visual" data-parallax>
+        <div class="about-img">
+          <img src="https://images.unsplash.com/photo-1617814076668-8dfc6fe3a5b3?w=800&q=80" alt="נהג מקצועי">
+          <div class="about-badge">
+            <div class="about-badge-num" data-count="30">0</div>
+            <div class="about-badge-txt">שנות ניסיון</div>
           </div>
         </div>
       </div>
       <div class="about-text">
-        <div class="section-label rv">אודות אמיל טורס VIP</div>
-        <h2 class="section-title rv">לא סתם <em>הסעה.</em><br>תרבות של מצוינות.</h2>
-        <p class="about-description rv">מאז 1992 אנחנו מגדירים מחדש את חוויית הנסיעה בישראל. כל רכב בצי שלנו נבחר בקפידה, כל נהג עבר הכשרה מקצועית מקיפה, וכל פרט מתוכנן כדי שהנסיעה שלכם תהיה חלק בלתי נפרד מהחוויה.</p>
-        <div class="about-features rv">
-          <div class="about-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            רכבי יוקרה מובילים
-          </div>
-          <div class="about-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            נהגים מקצועיים
-          </div>
-          <div class="about-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            שירות 24/7
-          </div>
-          <div class="about-feature">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            התאמה אישית מלאה
-          </div>
+        <div class="sec-label">אודות אמיל טורס</div>
+        <h2 class="sec-title">מסורת של <i>מצוינות</i><br>בכל נסיעה</h2>
+        <p class="about-desc">אורלי ואמיל סעדה הקימו את אמיל הסעות ב־1992 עם חזון אחד: להפוך כל נסיעה לחוויה. היום, עם צי של כ־100 רכבים מודרניים, אנחנו חברת ההסעות הפרטית הגדולה בישראל בתחום רכבי השריון והיוקרה.</p>
+        <p class="about-desc">חטיבת ה VIP שלנו מציעה רכבים מפוארים עם בר משקאות קרים וחמים, מושבי עור, ופרטיות מוחלטת. כל נסיעה מנוהלת באמצעות מערכת מעקב GPS לווייני מתקדמת.</p>
+        <div class="about-feats">
+          <div class="about-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>בר משקאות יוקרתי</div>
+          <div class="about-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>מושבי עור פרימיום</div>
+          <div class="about-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>GPS לווייני בכל רכב</div>
+          <div class="about-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>ממונה בטיחות ייעודי</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Services -->
+<!-- PARALLAX DIVIDER 1 -->
+<div class="par-divider">
+  <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1920&q=80" alt="כביש יוקרה" data-speed="0.3">
+  <div class="overlay"></div>
+  <div class="par-text">
+    <h2>לא רק הסעה.<br><em>חוויה שלמה.</em></h2>
+  </div>
+</div>
+
+<!-- SERVICES -->
 <section class="services" id="services">
-  <div class="services-header">
-    <div class="container">
-      <div class="section-label rv">השירותים שלנו</div>
-      <h2 class="section-title rv">כל שירות.<br><em>חוויה ייחודית.</em></h2>
-    </div>
+  <div class="services-header wrap">
+    <div class="sec-label">השירותים שלנו</div>
+    <h2 class="sec-title">פתרונות הסעה <i>מותאמים</i><br>לכל אירוע</h2>
   </div>
-  <div class="services-track-wrap">
-    <div class="services-track">
-      <div class="service-card rv-scale">
-        <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?w=700&q=80" alt="Airport luxury transfer">
-        </div>
-        <div class="service-card-body">
-          <div class="service-card-num">01</div>
-          <h3 class="service-card-title">טרנספרים לנתב"ג</h3>
-          <p class="service-card-desc">הגעה מושלמת לשדה התעופה או ממנו. הנהג ממתין לכם עם שלט אישי, מטפל במזוודות, ודואג שתגיעו בדיוק בזמן ובנוחות מלאה.</p>
+  <div class="srv-scroll-wrap">
+    <div class="srv-track">
+      <div class="srv-card">
+        <div class="srv-card-img"><img src="https://images.unsplash.com/photo-1631295868223-63265b40b6ec?w=700&q=80" alt="הסעות VIP"></div>
+        <div class="srv-card-body">
+          <div class="srv-card-num">01</div>
+          <h3 class="srv-card-title">הסעות VIP ואירועים</h3>
+          <p class="srv-card-desc">רכבי יוקרה מפוארים לאירועים, חתונות, כנסים ומפגשי עסקים. שירות מותאם אישית עם תשומת לב לכל פרט.</p>
         </div>
       </div>
-      <div class="service-card rv-scale">
-        <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80" alt="Wedding luxury car">
-        </div>
-        <div class="service-card-body">
-          <div class="service-card-num">02</div>
-          <h3 class="service-card-title">אירועים וחתונות</h3>
-          <p class="service-card-desc">הפכו את היום המיוחד שלכם למושלם. רכבי יוקרה מקושטים, נהג בחליפה, ותשומת לב לכל פרט קטן. הגעה בסטייל.</p>
+      <div class="srv-card">
+        <div class="srv-card-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=700&q=80" alt="רכבי שריון"></div>
+        <div class="srv-card-body">
+          <div class="srv-card-num">02</div>
+          <h3 class="srv-card-title">רכבי שריון ואבטחה</h3>
+          <p class="srv-card-desc">הצי הפרטי הגדול בישראל של רכבים ממוגני ירי. אבטחה מקסימלית עם רכבי 7 ו 10 מקומות.</p>
         </div>
       </div>
-      <div class="service-card rv-scale">
-        <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=700&q=80" alt="Corporate transfers">
-        </div>
-        <div class="service-card-body">
-          <div class="service-card-num">03</div>
-          <h3 class="service-card-title">הסעות עסקיות</h3>
-          <p class="service-card-desc">שירות הסעות יוקרתי לבכירים ומנהלים. דיסקרטיות מלאה, דיוק ברמה הגבוהה ביותר, ורכבים שמתאימים לפגישות ברמה הגבוהה ביותר.</p>
+      <div class="srv-card">
+        <div class="srv-card-img"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=80" alt="הסעות עובדים"></div>
+        <div class="srv-card-body">
+          <div class="srv-card-num">03</div>
+          <h3 class="srv-card-title">הסעות ארגוניות</h3>
+          <p class="srv-card-desc">פתרונות הסעות לארגונים, מפעלים ומוסדות חינוך. אוטובוסים ומיניבוסים מודרניים בכל הגדלים.</p>
         </div>
       </div>
-      <div class="service-card rv-scale">
-        <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=700&q=80" alt="VIP touring">
-        </div>
-        <div class="service-card-body">
-          <div class="service-card-num">04</div>
-          <h3 class="service-card-title">סיורי VIP</h3>
-          <p class="service-card-desc">חוו את ישראל ברמה אחרת. סיורים מותאמים אישית ברכבי יוקרה, עם נהג שמכיר כל פינה ויודע להפוך כל נסיעה לחוויה.</p>
+      <div class="srv-card">
+        <div class="srv-card-img"><img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=700&q=80" alt="טיולים"></div>
+        <div class="srv-card-body">
+          <div class="srv-card-num">04</div>
+          <h3 class="srv-card-title">טיולים ומסלולים</h3>
+          <p class="srv-card-desc">הסעות לטיולים ומסלולים בכל רחבי הארץ. רכבים מאובזרים לכל סוגי השטח והמסלולים.</p>
         </div>
       </div>
-      <div class="service-card rv-scale">
-        <div class="service-card-img">
-          <img src="https://images.unsplash.com/photo-1543796076-c4406d4e5e7c?w=700&q=80" alt="Long-term chauffeur">
-        </div>
-        <div class="service-card-body">
-          <div class="service-card-num">05</div>
-          <h3 class="service-card-title">שירות נהג צמוד</h3>
-          <p class="service-card-desc">נהג אישי לכל צורך. חודשי, שבועי, או יומי. הנהג שלכם זמין בכל רגע, מכיר את השגרה שלכם ומתאים את עצמו אליה.</p>
+      <div class="srv-card">
+        <div class="srv-card-img"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=700&q=80" alt="אמבולנס פרטי"></div>
+        <div class="srv-card-body">
+          <div class="srv-card-num">05</div>
+          <h3 class="srv-card-title">אמבולנס פרטי 4x4</h3>
+          <p class="srv-card-desc">שירות אמבולנס פרטי ייחודי מסוגו עם רכב שטח 4x4. מורשה משרד הבריאות, זמין 24/7.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Parallax Break -->
-<section class="parallax-break">
-  <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1920&q=80" alt="Luxury car interior" class="parallax-bg-img">
-  <div class="parallax-break-overlay"></div>
-  <div class="parallax-break-text rv">
-    <h3>הפרטים עושים את ההבדל</h3>
-    <p>כל נסיעה מתוכננת עד הפרט האחרון</p>
-  </div>
-</section>
-
-<!-- Fleet -->
+<!-- FLEET -->
 <section class="fleet" id="fleet">
-  <div class="container">
-    <div class="section-label rv" style="margin-bottom:1rem;">הצי שלנו</div>
-    <h2 class="section-title rv" style="margin-bottom:3rem;">הרכבים <em>הטובים ביותר.</em></h2>
-    <div class="fleet-bg-text">FLEET</div>
+  <div class="wrap">
+    <div class="fleet-bg">FLEET</div>
+    <div style="margin-bottom:3rem">
+      <div class="sec-label">הצי שלנו</div>
+      <h2 class="sec-title" style="margin-top:.8rem">כ 100 רכבים <i>מודרניים</i></h2>
+    </div>
     <div class="fleet-grid">
-      <div class="fleet-main rv-scale">
-        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=1200&q=80" alt="Mercedes S-Class">
+      <div class="fleet-main" data-parallax>
+        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=1100&q=80" alt="Mercedes VIP">
         <div class="fleet-main-info">
-          <h3>Mercedes S-Class</h3>
-          <p>הדגל של הצי שלנו. עיצוב מרהיב, טכנולוגיה מתקדמת, ונוחות ללא פשרות.</p>
+          <h3>רכבי VIP מפוארים</h3>
+          <p>בר משקאות, מושבי עור, פרטיות מלאה</p>
         </div>
       </div>
       <div class="fleet-side">
-        <div class="fleet-side-item rv-scale">
-          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80" alt="Mercedes V-Class">
-          <div class="fleet-side-label">Mercedes V-Class</div>
+        <div class="fleet-side-item" data-parallax>
+          <img src="https://images.unsplash.com/photo-1570733577524-3a047079e80d?w=600&q=80" alt="אוטובוס יוקרה">
+          <span class="fleet-side-label">אוטובוסים 50 מקומות</span>
         </div>
-        <div class="fleet-side-item rv-scale">
-          <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80" alt="BMW 7 Series">
-          <div class="fleet-side-label">BMW 7 Series</div>
+        <div class="fleet-side-item" data-parallax>
+          <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600&q=80" alt="מיניבוס">
+          <span class="fleet-side-label">מיניבוסים 19 מקומות</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Stats -->
-<section class="stats">
-  <div class="container">
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap">
     <div class="stats-grid">
-      <div class="stat-item rv">
-        <div class="stat-number"><span class="counter" data-target="32">0</span>+</div>
-        <div class="stat-label">שנות ניסיון</div>
-      </div>
-      <div class="stat-item rv">
-        <div class="stat-number"><span class="counter" data-target="150">0</span>+</div>
-        <div class="stat-label">רכבי יוקרה</div>
-      </div>
-      <div class="stat-item rv">
-        <div class="stat-number"><span class="counter" data-target="50">0</span>K+</div>
-        <div class="stat-label">נסיעות בשנה</div>
-      </div>
-      <div class="stat-item rv">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">זמינות מלאה</div>
-      </div>
+      <div class="stat-item"><div class="stat-num" data-count="100">0</div><div class="stat-txt">רכבים בצי</div></div>
+      <div class="stat-item"><div class="stat-num" data-count="30">0</div><div class="stat-txt">שנות ניסיון</div></div>
+      <div class="stat-item"><div class="stat-num" data-count="50000">0</div><div class="stat-txt">נסיעות בשנה</div></div>
+      <div class="stat-item"><div class="stat-num" data-count="99">0</div><div class="stat-txt">% שביעות רצון</div></div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- Experience -->
+<!-- EXPERIENCE -->
 <section class="experience" id="experience">
-  <div class="container">
+  <div class="wrap">
     <div class="exp-grid">
       <div class="exp-sticky">
-        <div class="section-label rv">החוויה</div>
-        <h2 class="section-title rv">למה <em>אנחנו?</em></h2>
+        <div class="sec-label">החוויה</div>
+        <h2 class="sec-title" style="margin-top:.8rem">למה <i>אמיל טורס</i><br>VIP?</h2>
       </div>
       <div class="exp-items">
-        <div class="exp-item rv">
+        <div class="exp-item">
           <div class="exp-num">01</div>
           <div>
-            <h3 class="exp-title">נהגים מקצועיים</h3>
-            <p class="exp-desc">כל נהג עובר תהליך מיון קפדני, הכשרה מקצועית ובדיקות תקופתיות. אנחנו לא פשוט מסיעים — אנחנו מעניקים שירות.</p>
+            <h3 class="exp-title">נהגים מקצועיים ומאומנים</h3>
+            <p class="exp-desc">כל נהג עובר הכשרה מקיפה ובדיקות בטיחות חודשיות. ממונה בטיחות ייעודי מפקח על כל הנהגים ומוודא סטנדרטים גבוהים.</p>
           </div>
         </div>
-        <div class="exp-item rv">
+        <div class="exp-item">
           <div class="exp-num">02</div>
           <div>
-            <h3 class="exp-title">דיוק ואמינות</h3>
-            <p class="exp-desc">הרכב מחכה לכם תמיד בזמן. מערכת ניטור מתקדמת מוודאת שאתם יודעים בדיוק מתי הרכב מגיע ואיפה הוא נמצא.</p>
+            <h3 class="exp-title">רכבים מאובזרים ברמה הגבוהה ביותר</h3>
+            <p class="exp-desc">בר משקאות קרים עם מקרר, בר משקאות חמים, מושבי עור נוחים, מערכת שמע איכותית ותאורת אווירה.</p>
           </div>
         </div>
-        <div class="exp-item rv">
+        <div class="exp-item">
           <div class="exp-num">03</div>
           <div>
-            <h3 class="exp-title">דיסקרטיות מוחלטת</h3>
-            <p class="exp-desc">הפרטיות שלכם בראש סדר העדיפויות. מחיצות פרטיות, הסכמי חיסיון, ושירות שמכבד את הפרטיות שלכם בכל רגע.</p>
+            <h3 class="exp-title">מעקב GPS לווייני בזמן אמת</h3>
+            <p class="exp-desc">כל רכב מצויד במערכת מעקב GPS לווייני מתקדמת. אתם יודעים בדיוק איפה הרכב שלכם בכל רגע.</p>
           </div>
         </div>
-        <div class="exp-item rv">
+        <div class="exp-item">
           <div class="exp-num">04</div>
           <div>
-            <h3 class="exp-title">התאמה אישית</h3>
-            <p class="exp-desc">מהמוזיקה ברכב ועד טמפרטורת המזגן. כל העדפה אישית שלכם נשמרת במערכת ומיושמת בכל נסיעה מחדש.</p>
+            <h3 class="exp-title">כיסוי ארצי מלא</h3>
+            <p class="exp-desc">משירותים באזור הדרום ועד צפון הארץ. אנחנו מגיעים לכל מקום בישראל, בכל שעה, בכל יום.</p>
           </div>
         </div>
       </div>
@@ -919,480 +476,262 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   </div>
 </section>
 
-<!-- Testimonials -->
-<section class="testimonials" id="testimonials">
-  <div class="container">
-    <div class="test-bg">"</div>
-    <div class="section-label rv" style="margin-bottom:1rem;text-align:center;justify-content:center;"><span style="display:none;" class="section-label::before"></span>מה הלקוחות אומרים</div>
-    <h2 class="section-title rv" style="text-align:center;margin-bottom:3rem;">חוויות <em>אמיתיות.</em></h2>
-    <div class="test-grid">
-      <div class="test-card rv">
-        <div class="test-quote-mark">"</div>
-        <p class="test-text">השירות של אמיל טורס VIP הוא ברמה אחרת לגמרי. הרכב הגיע בדיוק בזמן, הנהג היה מקצועי ונעים, והנסיעה הייתה חלקה ונוחה. ממליץ בחום.</p>
-        <div class="test-author">דניאל כהן</div>
-        <div class="test-role">מנכ"ל, Cohen Ventures</div>
+<!-- PARALLAX DIVIDER 2 -->
+<div class="par-divider">
+  <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80" alt="רכב יוקרה בלילה" data-speed="0.3">
+  <div class="overlay"></div>
+  <div class="par-text">
+    <h2>שירות ברמה<br><em>אחרת לגמרי.</em></h2>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="reviews-bg">"</div>
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="sec-label" style="justify-content:center"><span style="display:none">.</span>מה אומרים עלינו</div>
+      <h2 class="sec-title" style="margin-top:.8rem">לקוחות <i>מספרים</i></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="rev-card">
+        <div class="rev-mark">"</div>
+        <p class="rev-text">השירות של אמיל טורס VIP הוא ברמה אחרת לגמרי. הרכב היה מפואר, הנהג מקצועי ואדיב, והכל היה מושלם מהרגע הראשון.</p>
+        <div class="rev-author">
+          <div class="rev-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt=""></div>
+          <div><div class="rev-name">דוד כהן</div><div class="rev-role">מנכ"ל, TechVision</div></div>
+        </div>
       </div>
-      <div class="test-card rv">
-        <div class="test-quote-mark">"</div>
-        <p class="test-text">השתמשנו בשירות לחתונה שלנו וזה היה מושלם. הרכב היה מרהיב, הנהג דאג לכל פרט, והתחושה הייתה כמו בסרט. פשוט חלום.</p>
-        <div class="test-author">נועה ויואב לוי</div>
-        <div class="test-role">זוג מאושר</div>
+      <div class="rev-card">
+        <div class="rev-mark">"</div>
+        <p class="rev-text">הזמנו רכב VIP לחתונה של הבת שלנו. הנהג הגיע בזמן, הרכב היה נקי ומפואר, ובר המשקאות היה מושלם. ממליצים בחום!</p>
+        <div class="rev-author">
+          <div class="rev-avatar"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt=""></div>
+          <div><div class="rev-name">רונית לוי</div><div class="rev-role">לקוחה פרטית</div></div>
+        </div>
       </div>
-      <div class="test-card rv">
-        <div class="test-quote-mark">"</div>
-        <p class="test-text">אנחנו משתמשים באמיל טורס VIP להסעת אורחים בינלאומיים שמגיעים למשרדים שלנו. התגובות תמיד מדהימות — הם לא מאמינים שזה השירות בישראל.</p>
-        <div class="test-author">מיכל ברנשטיין</div>
-        <div class="test-role">VP Operations, TechFlow</div>
+      <div class="rev-card">
+        <div class="rev-mark">"</div>
+        <p class="rev-text">אנחנו משתמשים בשירותי אמיל טורס כבר 5 שנים להסעות VIP של אורחי כבוד. תמיד אמינים, תמיד מקצועיים. שותפים אמיתיים.</p>
+        <div class="rev-author">
+          <div class="rev-avatar"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt=""></div>
+          <div><div class="rev-name">אבי מזרחי</div><div class="rev-role">סמנכ"ל תפעול, GlobalCorp</div></div>
+        </div>
       </div>
-      <div class="test-card rv">
-        <div class="test-quote-mark">"</div>
-        <p class="test-text">הנהג הצמוד שלי כבר שלוש שנים, ואני לא מוכן להחליף. הוא מכיר את הלוח זמנים שלי, יודע בדיוק לאן אני צריך להגיע, ותמיד שם צעד אחד לפניי.</p>
-        <div class="test-author">רון אברהם</div>
-        <div class="test-role">שותף בכיר, משרד עורכי דין</div>
+      <div class="rev-card">
+        <div class="rev-mark">"</div>
+        <p class="rev-text">הרמה של הרכבים והשירות עולה על כל מה שחווינו בארץ. מרגיש כמו שירות VIP בלונדון או ניו יורק. מומלץ בחום.</p>
+        <div class="rev-author">
+          <div class="rev-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt=""></div>
+          <div><div class="rev-name">מיכל ברק</div><div class="rev-role">יועצת עסקית</div></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Parallax Break 2 -->
-<section class="parallax-break">
-  <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80" alt="Luxury car on road" class="parallax-bg-img">
-  <div class="parallax-break-overlay"></div>
-  <div class="parallax-break-text rv">
-    <h3>היעד הוא רק ההתחלה</h3>
-    <p>הדרך היא החוויה</p>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
-  <div class="container">
-    <div class="cta-inner">
-      <div class="section-label rv">צרו קשר</div>
-      <h2 class="cta-title rv">מוכנים לחוויה<br><em>אחרת?</em></h2>
-      <p class="cta-desc rv">צוות היוקרה שלנו ממתין לכם. התקשרו עכשיו או שלחו הודעה בוואטסאפ ונתאים לכם את הנסיעה המושלמת.</p>
-      <div class="cta-buttons rv">
-        <a href="tel:+97239543954" class="cta-btn gold magnetic">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          התקשרו עכשיו
-        </a>
-        <a href="https://wa.me/97239543954" class="cta-btn outline magnetic">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.67-1.227A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.7-6.412-1.9l-.45-.29-2.8.736.75-2.738-.318-.502A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          WhatsApp
-        </a>
-      </div>
-      <a href="tel:+97239543954" class="cta-phone">03-954-3954</a>
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1920&q=80" alt="רכב יוקרה">
+    <div></div>
+  </div>
+  <div class="wrap">
+    <div class="cta-content">
+      <div class="sec-label">התחילו היום</div>
+      <h2 class="sec-title">מוכנים לחוויה <i>אחרת</i>?</h2>
+      <p class="cta-desc">צרו קשר עכשיו ונתאים לכם את הרכב המושלם לאירוע הבא שלכם. צוות מקצועי זמין לכם בכל שעה.</p>
+      <a href="tel:086813222" class="cta-btn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        הזמינו נסיעה עכשיו
+      </a>
+      <a href="tel:086813222" class="cta-phone">08-6813222</a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid rv">
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
       <div>
-        <div class="footer-brand-name">Emil Tours VIP</div>
-        <p class="footer-brand-desc">שירות הסעות יוקרה פרימיום מאז 1992. חוויית נסיעה שאין כמוה בישראל.</p>
+        <div class="foot-brand">Emil Tours <span>VIP</span></div>
+        <p class="foot-desc">חטיבת רכבי היוקרה של אמיל הסעות. מאז 1992 אנחנו מספקים שירות הסעות פרימיום ברמה הגבוהה ביותר.</p>
       </div>
-      <div class="footer-col">
-        <div class="footer-col-title">שירותים</div>
-        <a href="#">טרנספרים לנתב"ג</a>
-        <a href="#">אירועים וחתונות</a>
-        <a href="#">הסעות עסקיות</a>
-        <a href="#">סיורי VIP</a>
-        <a href="#">נהג צמוד</a>
+      <div>
+        <div class="foot-title">ניווט</div>
+        <ul class="foot-links">
+          <li><a href="#about">אודות</a></li>
+          <li><a href="#services">שירותים</a></li>
+          <li><a href="#fleet">הצי שלנו</a></li>
+          <li><a href="#experience">החוויה</a></li>
+          <li><a href="#reviews">לקוחות</a></li>
+        </ul>
       </div>
-      <div class="footer-col">
-        <div class="footer-col-title">הצי</div>
-        <a href="#">Mercedes S-Class</a>
-        <a href="#">Mercedes V-Class</a>
-        <a href="#">BMW 7 Series</a>
-        <a href="#">Cadillac Escalade</a>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">צרו קשר</div>
-        <a href="tel:+97239543954">03-954-3954</a>
-        <a href="mailto:vip@emiltours.co.il">vip@emiltours.co.il</a>
-        <a href="https://wa.me/97239543954">WhatsApp</a>
+      <div>
+        <div class="foot-title">יצירת קשר</div>
+        <ul class="foot-links">
+          <li><a href="tel:086813222">08-6813222</a></li>
+          <li><a href="#">תלם, הר חברון</a></li>
+          <li><a href="https://facebook.com/emiltours/" target="_blank">פייסבוק</a></li>
+        </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">&copy; 2026 Emil Tours VIP. כל הזכויות שמורות.</div>
-      <div class="footer-bottom-links">
-        <a href="#">תנאי שימוש</a>
-        <a href="#">מדיניות פרטיות</a>
-        <a href="#">נגישות</a>
-      </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Emil Tours VIP. כל הזכויות שמורות.</span>
+      <span>אמיל הסעות בע"מ</span>
     </div>
   </div>
 </footer>
 
-<!-- Libraries -->
-<script src="https://unpkg.com/lenis@1.3.21/dist/lenis.min.js"></script>
+<!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.21/dist/lenis.min.js"></script>
 <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
-
 <script>
-/* ═══════════════════════════════════════════════════
-   EMIL TOURS VIP — GSAP + PARALLAX + SCROLL ANIMATIONS
-   ═══════════════════════════════════════════════════ */
+(function(){
+'use strict';
 
-// ── Lenis Smooth Scroll ──
-const lenis = new Lenis({ duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(time => lenis.raf(time * 1000));
+// LENIS SMOOTH SCROLL
+const lenis = new Lenis({duration:1.3,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),orientation:'vertical',smoothWheel:true});
+function raf(time){lenis.raf(time);requestAnimationFrame(raf)}
+requestAnimationFrame(raf);
+lenis.on('scroll',ScrollTrigger.update);
+gsap.ticker.add(time=>lenis.raf(time*1000));
 gsap.ticker.lagSmoothing(0);
 
-// ── Loader ──
-const loaderTl = gsap.timeline({
-  onComplete: () => {
-    gsap.to('.loader', { opacity: 0, duration: 0.8, ease: 'power2.inOut', onComplete: () => {
-      document.querySelector('.loader').style.display = 'none';
-      lenis.start();
-      animateHero();
-    }});
-  }
-});
+// LOADER
+const loader=document.querySelector('.loader');
+const loaderFill=document.querySelector('.loader-fill');
+const loaderPct=document.querySelector('.loader-pct');
+const loaderBrand=document.querySelector('.loader-brand');
+const tl=gsap.timeline({onComplete:()=>{gsap.to(loader,{opacity:0,duration:.8,ease:'power2.inOut',onComplete:()=>{loader.style.display='none';lenis.start();initAnimations()}})}});
 lenis.stop();
+tl.to(loaderBrand,{opacity:1,duration:.5,ease:'power2.out'})
+  .to(loaderPct,{opacity:1,duration:.3},'<.2')
+  .to(loaderFill,{scaleX:1,transformOrigin:'right',duration:2,ease:'power2.inOut',onUpdate:function(){loaderPct.textContent=Math.round(this.progress()*100)+'%'}})
+  .to([loaderBrand,loaderPct],{opacity:0,y:-10,duration:.3},'+=.2');
 
-loaderTl
-  .to('.loader-text', { opacity: 1, duration: 0.6, ease: 'power2.out' })
-  .to('.loader-counter', { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.2)
-  .to('.loader-fill', { scaleX: 1, transformOrigin: 'right', duration: 2, ease: 'power2.inOut' }, 0.4)
-  .to('.loader-counter', {
-    innerText: 100,
-    duration: 2,
-    snap: { innerText: 1 },
-    ease: 'power2.inOut',
-    onUpdate: function() {
-      document.querySelector('.loader-counter').textContent = Math.round(this.targets()[0].innerText) + '%';
-    }
-  }, 0.4);
-
-// ── Hero Entrance ──
-function animateHero() {
-  const heroTl = gsap.timeline();
-
-  // Parallax zoom on hero image
-  gsap.to('.hero-media img', {
-    scale: 1,
-    duration: 2.5,
-    ease: 'power2.out'
-  });
-
-  // SplitType on hero title
-  try {
-    const heroTitle = new SplitType('.hero-title', { types: 'chars, words' });
-    heroTl
-      .from('.hero-eyebrow', { opacity: 0, y: 20, duration: 0.8, ease: 'power3.out' })
-      .from(heroTitle.chars, { opacity: 0, y: 60, rotateX: -40, duration: 0.8, stagger: 0.02, ease: 'power3.out' }, 0.2)
-      .from('.hero-sub', { opacity: 0, y: 20, duration: 0.8, ease: 'power3.out' }, 0.8)
-      .from('.hero-cta-row', { opacity: 0, y: 20, duration: 0.8, ease: 'power3.out' }, 1)
-      .from('.hero-scroll', { opacity: 0, duration: 0.6, ease: 'power2.out' }, 1.2);
-  } catch(e) {
-    heroTl
-      .from('.hero-eyebrow', { opacity: 0, y: 20, duration: 0.8, ease: 'power3.out' })
-      .from('.hero-title', { opacity: 0, y: 40, duration: 1, ease: 'power3.out' }, 0.2)
-      .from('.hero-sub', { opacity: 0, y: 20, duration: 0.8, ease: 'power3.out' }, 0.6)
-      .from('.hero-cta-row', { opacity: 0, y: 20, duration: 0.8, ease: 'power3.out' }, 0.8)
-      .from('.hero-scroll', { opacity: 0, duration: 0.6, ease: 'power2.out' }, 1);
-  }
+// CURSOR
+const dot=document.querySelector('.c-dot'),ring=document.querySelector('.c-ring');
+let mx=0,my=0,cx=0,cy=0,rx=0,ry=0;
+if(dot&&ring&&window.innerWidth>900){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  gsap.ticker.add(()=>{cx+=(mx-cx)*.2;cy+=(my-cy)*.2;rx+=(mx-rx)*.08;ry+=(my-ry)*.08;dot.style.left=cx+'px';dot.style.top=cy+'px';ring.style.left=rx+'px';ring.style.top=ry+'px'});
+  document.querySelectorAll('a,button,.srv-card,.rev-card,.fleet-main,.fleet-side-item').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hover'));el.addEventListener('mouseleave',()=>ring.classList.remove('hover'))});
 }
 
-// ── Hero Parallax on Scroll ──
-gsap.to('.hero-media img', {
-  yPercent: 30,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '.hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true
+// NAV SCROLL
+const nav=document.querySelector('.nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)});
+
+// BURGER
+const burger=document.querySelector('.burger'),mobMenu=document.querySelector('.mob-menu');
+burger.addEventListener('click',()=>{burger.classList.toggle('active');mobMenu.classList.toggle('open');if(mobMenu.classList.contains('open'))lenis.stop();else lenis.start()});
+mobMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('active');mobMenu.classList.remove('open');lenis.start()}));
+
+// SMOOTH ANCHOR
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)lenis.scrollTo(t,{offset:-80})})});
+
+function initAnimations(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  // HERO
+  const heroTl=gsap.timeline();
+  heroTl.from('.hero-media img',{scale:1.3,duration:2,ease:'power2.out'})
+    .to('.hero-eyebrow',{opacity:1,y:0,duration:.8,ease:'power2.out'},'<.5')
+    .to('.hero-title',{opacity:1,y:0,duration:1,ease:'power2.out'},'<.2')
+    .to('.hero-sub',{opacity:1,y:0,duration:.8,ease:'power2.out'},'<.2')
+    .to('.hero-cta-row',{opacity:1,y:0,duration:.8,ease:'power2.out'},'<.2');
+
+  // HERO PARALLAX
+  gsap.to('.hero-media img',{y:'-20%',ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  // SECTION REVEALS
+  gsap.utils.toArray('.sec-label').forEach(el=>{
+    gsap.from(el,{opacity:0,x:30,duration:.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}});
+  });
+  gsap.utils.toArray('.sec-title').forEach(el=>{
+    gsap.from(el,{opacity:0,y:40,duration:1,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}});
+  });
+
+  // ABOUT
+  gsap.from('.about-img',{opacity:0,x:-60,duration:1.2,ease:'power2.out',scrollTrigger:{trigger:'.about',start:'top 70%'}});
+  gsap.from('.about-text',{opacity:0,x:60,duration:1.2,ease:'power2.out',scrollTrigger:{trigger:'.about',start:'top 70%'}});
+
+  // ABOUT IMAGE PARALLAX
+  gsap.to('.about-img img',{y:'-15%',ease:'none',scrollTrigger:{trigger:'.about',start:'top bottom',end:'bottom top',scrub:true}});
+
+  // PARALLAX DIVIDERS
+  document.querySelectorAll('.par-divider img[data-speed]').forEach(img=>{
+    gsap.to(img,{y:'-30%',ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  gsap.utils.toArray('.par-text h2').forEach(el=>{
+    gsap.from(el,{opacity:0,y:50,scale:.95,duration:1.2,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 80%'}});
+  });
+
+  // SERVICES HORIZONTAL SCROLL
+  const srvTrack=document.querySelector('.srv-track');
+  const srvCards=gsap.utils.toArray('.srv-card');
+  if(srvCards.length&&window.innerWidth>700){
+    const totalW=srvTrack.scrollWidth-window.innerWidth;
+    gsap.to(srvTrack,{x:()=>totalW*-1,ease:'none',scrollTrigger:{trigger:'.services',start:'top 20%',end:()=>'+='+totalW,scrub:1,pin:true,anticipatePin:1}});
   }
-});
-
-// ── Nav Scroll ──
-ScrollTrigger.create({
-  start: 80,
-  onUpdate: self => {
-    document.querySelector('.nav').classList.toggle('scrolled', self.direction === 1 && self.scroll() > 80);
-  },
-  onLeaveBack: () => document.querySelector('.nav').classList.remove('scrolled')
-});
-window.addEventListener('scroll', () => {
-  document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 80);
-});
-
-// ── Cursor ──
-if (window.innerWidth > 900) {
-  const dot = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  let mx = 0, my = 0, cx = 0, cy = 0, rx = 0, ry = 0;
-
-  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-  gsap.ticker.add(() => {
-    cx += (mx - cx) * 0.2;
-    cy += (my - cy) * 0.2;
-    rx += (mx - rx) * 0.08;
-    ry += (my - ry) * 0.08;
-    dot.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+  srvCards.forEach((c,i)=>{
+    gsap.from(c,{opacity:0,y:60,duration:.8,ease:'power2.out',delay:i*.1,scrollTrigger:{trigger:c,start:'top 85%',containerAnimation:window.innerWidth>700?ScrollTrigger.getAll().find(st=>st.vars.trigger==='.services'):null}});
   });
 
-  document.querySelectorAll('a, button, .magnetic').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  // FLEET
+  gsap.from('.fleet-main',{opacity:0,y:50,duration:1,ease:'power2.out',scrollTrigger:{trigger:'.fleet',start:'top 70%'}});
+  gsap.from('.fleet-side-item',{opacity:0,y:40,stagger:.2,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.fleet',start:'top 65%'}});
+
+  // FLEET PARALLAX
+  gsap.to('.fleet-main img',{y:'-10%',ease:'none',scrollTrigger:{trigger:'.fleet',start:'top bottom',end:'bottom top',scrub:true}});
+  document.querySelectorAll('.fleet-side-item img').forEach(img=>{
+    gsap.to(img,{y:'-12%',ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}});
   });
+
+  // COUNTERS
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const end=parseInt(el.dataset.count);
+    const obj={val:0};
+    gsap.to(obj,{val:end,duration:2,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'},onUpdate:()=>{el.textContent=Math.round(obj.val).toLocaleString()}});
+  });
+
+  // STATS
+  gsap.from('.stat-item',{opacity:0,y:30,stagger:.15,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.stats',start:'top 80%'}});
+
+  // EXPERIENCE
+  gsap.from('.exp-item',{opacity:0,y:40,stagger:.2,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.exp-items',start:'top 75%'}});
+
+  // REVIEWS
+  gsap.from('.rev-card',{opacity:0,y:50,stagger:.15,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.reviews',start:'top 70%'}});
+
+  // CTA
+  gsap.from('.cta-content',{opacity:0,y:40,duration:1,ease:'power2.out',scrollTrigger:{trigger:'.cta-section',start:'top 75%'}});
+
+  // MARQUEE PARALLAX
+  gsap.to('.marquee-track',{x:'+=100',ease:'none',scrollTrigger:{trigger:'.marquee',start:'top bottom',end:'bottom top',scrub:1}});
+
+  // TEXT SPLIT ANIMATIONS
+  try{
+    const splits=document.querySelectorAll('.hero-title,.par-text h2');
+    splits.forEach(el=>{
+      if(el.closest('.hero')){
+        try{
+          const split=new SplitType(el,{types:'chars'});
+          gsap.from(split.chars,{opacity:0,y:80,rotateX:-90,stagger:.02,duration:1,ease:'power3.out',delay:.8});
+        }catch(e){}
+      }
+    });
+  }catch(e){}
+
+  // FOOTER
+  gsap.from('.foot-grid > div',{opacity:0,y:30,stagger:.15,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'footer',start:'top 85%'}});
 }
 
-// ── Magnetic Buttons ──
-document.querySelectorAll('.magnetic').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.4, ease: 'power2.out' });
-  });
-  btn.addEventListener('mouseleave', () => {
-    gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
-  });
-});
-
-// ── Mobile Menu ──
-const burger = document.querySelector('.burger');
-const mobileMenu = document.querySelector('.mobile-menu');
-burger.addEventListener('click', () => {
-  burger.classList.toggle('active');
-  mobileMenu.classList.toggle('open');
-  if (mobileMenu.classList.contains('open')) { lenis.stop(); }
-  else { lenis.start(); }
-});
-document.querySelectorAll('.mobile-menu a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('active');
-    mobileMenu.classList.remove('open');
-    lenis.start();
-  });
-});
-
-// ── Reveal Animations ──
-gsap.utils.toArray('.rv').forEach(el => {
-  gsap.to(el, {
-    opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-  });
-});
-gsap.utils.toArray('.rv-right').forEach(el => {
-  gsap.to(el, {
-    opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-  });
-});
-gsap.utils.toArray('.rv-left').forEach(el => {
-  gsap.to(el, {
-    opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-  });
-});
-gsap.utils.toArray('.rv-scale').forEach(el => {
-  gsap.to(el, {
-    opacity: 1, scale: 1, duration: 1, ease: 'power3.out',
-    scrollTrigger: { trigger: el, start: 'top 85%', once: true }
-  });
-});
-
-// ── SplitType on Section Titles ──
-gsap.utils.toArray('.section-title').forEach(title => {
-  try {
-    const split = new SplitType(title, { types: 'chars, words' });
-    gsap.from(split.chars, {
-      opacity: 0, y: 40, duration: 0.7, stagger: 0.015, ease: 'power3.out',
-      scrollTrigger: { trigger: title, start: 'top 80%', once: true }
-    });
-  } catch(e) {}
-});
-
-// ── Parallax Images ──
-gsap.utils.toArray('.parallax-img img').forEach(img => {
-  gsap.to(img, {
-    yPercent: -8,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: img.parentElement,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true
-    }
-  });
-});
-
-// ── Parallax Break Sections ──
-gsap.utils.toArray('.parallax-bg-img').forEach(img => {
-  gsap.to(img, {
-    yPercent: 20,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: img.parentElement,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true
-    }
-  });
-});
-
-// ── Fleet Background Text Parallax ──
-gsap.to('.fleet-bg-text', {
-  yPercent: -30,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '.fleet',
-    start: 'top bottom',
-    end: 'bottom top',
-    scrub: true
-  }
-});
-
-// ── Testimonials BG Text Parallax ──
-gsap.to('.test-bg', {
-  yPercent: -20,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '.testimonials',
-    start: 'top bottom',
-    end: 'bottom top',
-    scrub: true
-  }
-});
-
-// ── Services Horizontal Scroll ──
-const servicesTrack = document.querySelector('.services-track');
-const servicesWrap = document.querySelector('.services-track-wrap');
-if (servicesTrack && window.innerWidth > 900) {
-  const totalScroll = servicesTrack.scrollWidth - servicesWrap.offsetWidth;
-  gsap.to(servicesTrack, {
-    x: -totalScroll,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.services',
-      start: 'top 15%',
-      end: () => `+=${totalScroll}`,
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1
-    }
-  });
-}
-
-// ── Counters ──
-document.querySelectorAll('.counter').forEach(counter => {
-  const target = parseInt(counter.dataset.target);
-  ScrollTrigger.create({
-    trigger: counter,
-    start: 'top 85%',
-    once: true,
-    onEnter: () => {
-      gsap.to(counter, {
-        innerText: target,
-        duration: 2,
-        snap: { innerText: 1 },
-        ease: 'power2.out',
-        onUpdate: function() {
-          counter.textContent = Math.round(counter.innerText);
-        }
-      });
-    }
-  });
-});
-
-// ── Service Card Image 3D Tilt ──
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(card, {
-      rotateY: x * 6,
-      rotateX: -y * 6,
-      duration: 0.4,
-      ease: 'power2.out',
-      transformPerspective: 800
-    });
-  });
-  card.addEventListener('mouseleave', () => {
-    gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
-  });
-});
-
-// ── Fleet Items 3D Tilt ──
-document.querySelectorAll('.fleet-main, .fleet-side-item').forEach(item => {
-  item.addEventListener('mousemove', e => {
-    const rect = item.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(item, {
-      rotateY: x * 4,
-      rotateX: -y * 4,
-      duration: 0.4,
-      ease: 'power2.out',
-      transformPerspective: 1000
-    });
-  });
-  item.addEventListener('mouseleave', () => {
-    gsap.to(item, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
-  });
-});
-
-// ── Experience Items Stagger ──
-gsap.utils.toArray('.exp-item').forEach((item, i) => {
-  gsap.from(item, {
-    opacity: 0, x: -30, duration: 0.8, delay: i * 0.1,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: item, start: 'top 85%', once: true }
-  });
-});
-
-// ── Test Cards Stagger ──
-gsap.utils.toArray('.test-card').forEach((card, i) => {
-  gsap.from(card, {
-    opacity: 0, y: 40, duration: 0.8, delay: i * 0.15,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: card, start: 'top 85%', once: true }
-  });
-});
-
-// ── CTA Title Animation ──
-try {
-  const ctaSplit = new SplitType('.cta-title', { types: 'chars, words' });
-  gsap.from(ctaSplit.chars, {
-    opacity: 0, y: 50, rotateX: -30, duration: 0.7, stagger: 0.02, ease: 'power3.out',
-    scrollTrigger: { trigger: '.cta-title', start: 'top 80%', once: true }
-  });
-} catch(e) {}
-
-// ── Marquee Speed Based on Scroll Velocity ──
-let marqueeSpeed = 1;
-lenis.on('scroll', ({ velocity }) => {
-  marqueeSpeed = 1 + Math.abs(velocity) * 0.003;
-  document.querySelector('.marquee-track').style.animationDuration = (30 / marqueeSpeed) + 's';
-});
-
-// ── Stats Dividers Animation ──
-gsap.utils.toArray('.stat-item').forEach((item, i) => {
-  gsap.from(item, {
-    opacity: 0, y: 30, duration: 0.6, delay: i * 0.1,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: '.stats', start: 'top 80%', once: true }
-  });
-});
-
-// ── Footer Stagger ──
-gsap.from('.footer-grid > *', {
-  opacity: 0, y: 30, duration: 0.6, stagger: 0.1, ease: 'power3.out',
-  scrollTrigger: { trigger: '.footer', start: 'top 85%', once: true }
-});
-
+})();
 </script>
 </body>
 </html>
