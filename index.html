@@ -175,14 +175,15 @@ a{text-decoration:none;color:inherit}
 .exp-desc{font-size:13px;color:var(--cream40);line-height:1.9;font-weight:300}
 @media(max-width:900px){.exp-grid{grid-template-columns:1fr}.exp-sticky{position:relative;top:0}}
 
-/* GALLERY STRIP */
+/* GALLERY STRIP — auto marquee, no scroll-triggered horizontal */
 .gallery-strip{padding:clamp(3rem,6vw,5rem) 0;overflow:hidden}
 .gallery-strip-title{text-align:center;margin-bottom:2.5rem}
-.gallery-track{display:flex;gap:1rem;will-change:transform}
+.gallery-track{display:flex;gap:1rem;width:max-content;animation:galleryMarquee 35s linear infinite}
 .gallery-item{flex-shrink:0;width:clamp(280px,28vw,380px);aspect-ratio:3/2;overflow:hidden;position:relative}
 .gallery-item img{transition:transform 5s var(--ease)}
 .gallery-item:hover img{transform:scale(1.06)}
 .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,10,.5) 0%,transparent 40%)}
+@keyframes galleryMarquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* TESTIMONIALS */
 .reviews{padding:clamp(5rem,12vw,9rem) 0;position:relative;overflow:hidden}
@@ -429,7 +430,7 @@ footer{padding:3rem 0 1.5rem;border-top:1px solid var(--cream05)}
         </div>
       </div>
       <div class="fleet-card" data-parallax>
-        <img src="https://images.unsplash.com/photo-1519245659620-e859806a8d7b?w=700&q=80" alt="Cadillac Escalade">
+        <img src="https://images.unsplash.com/photo-1621993202323-eb4e81f5db79?w=700&q=80" alt="Cadillac Escalade">
         <div class="fleet-card-info">
           <h3>Cadillac Escalade</h3>
           <p>SUV יוקרתי ומרווח</p>
@@ -771,21 +772,7 @@ function initAnimations(){
   // EXPERIENCE
   gsap.from('.exp-item',{opacity:0,y:40,stagger:.2,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.exp-items',start:'top 75%'}});
 
-  // GALLERY STRIP — infinite horizontal scroll
-  const galleryTrack=document.querySelector('.gallery-track');
-  if(galleryTrack){
-    const galleryTotalW=galleryTrack.scrollWidth/2;
-    gsap.to(galleryTrack,{
-      x:()=>-galleryTotalW,
-      ease:'none',
-      scrollTrigger:{
-        trigger:'.gallery-strip',
-        start:'top bottom',
-        end:'bottom top',
-        scrub:1
-      }
-    });
-  }
+  // GALLERY STRIP — CSS marquee animation, no GSAP scroll needed
 
   // REVIEWS
   gsap.from('.rev-card',{opacity:0,y:50,stagger:.15,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.reviews',start:'top 70%'}});
